@@ -62,12 +62,6 @@ function App() {
     setIsAddPlacePopupOpen(true);
   };
 
-  function handlePopupCloseClick(evt) {
-    if (evt.target.classList.contains("popup_opened")) {
-      closeAllPopups();
-    }
-  }
-
   const closeAllPopups = () => {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -278,23 +272,23 @@ function App() {
             />
             <Route path="*" element={<Navigate to={isLogged ? "/" : "/sign-in"} />} />
           </Routes>
-          <ImagePopup card={selectedCard} onClose={handlePopupCloseClick} />
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
-            onClose={handlePopupCloseClick}
+            onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
-            onClose={handlePopupCloseClick}
+            onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
-            onClose={handlePopupCloseClick}
+            onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
           />
-          <InfoTooltip isOpen={isOpenTooltip} title={titleTooltip} image={iconTooltip} onClose={handlePopupCloseClick}/>
+          <InfoTooltip isOpen={isOpenTooltip} title={titleTooltip} image={iconTooltip} onClose={closeAllPopups}/>
         </div>
       </div>
     </CurrentUserContext.Provider>
